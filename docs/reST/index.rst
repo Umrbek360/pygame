@@ -1,213 +1,180 @@
-Pygame Front Page
-=================
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   ref/*
-   tut/*
-   tut/en/**/*
-   tut/ko/**/*
-   c_api
-   filepaths
-   logos
-
-Quick start
------------
-
-Welcome to pygame! Once you've got pygame installed (:code:`pip install pygame` or
-:code:`pip3 install pygame` for most people), the next question is how to get a game
-loop running. Pygame, unlike some other libraries, gives you full control of program
-execution. That freedom means it is easy to mess up in your initial steps.
-
-Here is a good example of a basic setup (opens the window, updates the screen, and handles events)--
-
-.. literalinclude:: ref/code_examples/base_script.py
-
-Here is a slightly more fleshed out example, which shows you how to move something
-(a circle in this case) around on screen--
-
-.. literalinclude:: ref/code_examples/base_script_example.py
-
-For more in depth reference, check out the :ref:`tutorials-reference-label`
-section below, check out a video tutorial (`I'm a fan of this one
-<https://www.youtube.com/watch?v=AY9MnQ4x3zk>`_), or reference the API
-documentation by module.
-
-Documents
----------
-
-`Readme`_
-  Basic information about pygame: what it is, who is involved, and where to find it.
-
-`Install`_
-  Steps needed to compile pygame on several platforms.
-  Also help on finding and installing prebuilt binaries for your system.
-
-:doc:`filepaths`
-  How pygame handles file system paths.
-
-:doc:`Pygame Logos <logos>`
-   The logos of Pygame in different resolutions.
-
-
-`LGPL License`_
-  This is the license pygame is distributed under.
-  It provides for pygame to be distributed with open source and commercial software.
-  Generally, if pygame is not changed, it can be used with any type of program.
-
-.. _tutorials-reference-label:
-
-Tutorials
----------
-
-:doc:`Introduction to Pygame <tut/PygameIntro>`
-  An introduction to the basics of pygame.
-  This is written for users of Python and appeared in volume two of the Py magazine.
-
-:doc:`Import and Initialize <tut/ImportInit>`
-  The beginning steps on importing and initializing pygame.
-  The pygame package is made of several modules.
-  Some modules are not included on all platforms.
-
-:doc:`How do I move an Image? <tut/MoveIt>`
-  A basic tutorial that covers the concepts behind 2D computer animation.
-  Information about drawing and clearing objects to make them appear animated.
-
-:doc:`Chimp Tutorial, Line by Line <tut/ChimpLineByLine>`
-  The pygame examples include a simple program with an interactive fist and a chimpanzee.
-  This was inspired by the annoying flash banner of the early 2000s.
-  This tutorial examines every line of code used in the example.
-
-:doc:`Sprite Module Introduction <tut/SpriteIntro>`
-  Pygame includes a higher level sprite module to help organize games.
-  The sprite module includes several classes that help manage details found in almost all games types.
-  The Sprite classes are a bit more advanced than the regular pygame modules,
-  and need more understanding to be properly used.
-
-:doc:`Surfarray Introduction <tut/SurfarrayIntro>`
-  Pygame used the NumPy python module to allow efficient per pixel effects on images.
-  Using the surface arrays is an advanced feature that allows custom effects and filters.
-  This also examines some of the simple effects from the pygame example, arraydemo.py.
-
-:doc:`Camera Module Introduction <tut/CameraIntro>`
-  Pygame, as of 1.9, has a camera module that allows you to capture images,
-  watch live streams, and do some basic computer vision.
-  This tutorial covers those use cases.
-
-:doc:`Newbie Guide <tut/newbieguide>`
-  A list of thirteen helpful tips for people to get comfortable using pygame.
-
-:doc:`Making Games Tutorial <tut/MakeGames>`
-  A large tutorial that covers the bigger topics needed to create an entire game.
-
-:doc:`Display Modes <tut/DisplayModes>`
-  Getting a display surface for the screen.
-
-:doc:`한국어 튜토리얼 (Korean Tutorial) <tut/ko/빨간블록 검은블록/개요>`
-  빨간블록 검은블록
-
-
-Reference
----------
-
-:ref:`genindex`
-  A list of all functions, classes, and methods in the pygame package.
-
-:doc:`ref/bufferproxy`
-  An array protocol view of surface pixels
-
-:doc:`ref/color`
-  Color representation.
-
-:doc:`ref/cursors`
-  Loading and compiling cursor images.
-
-:doc:`ref/display`
-  Configure the display surface.
-
-:doc:`ref/draw`
-  Drawing simple shapes like lines and ellipses to surfaces.
-
-:doc:`ref/event`
-  Manage the incoming events from various input devices and the windowing platform.
-
-:doc:`ref/examples`
-  Various programs demonstrating the use of individual pygame modules.
-
-:doc:`ref/font`
-  Loading and rendering TrueType fonts.
-
-:doc:`ref/freetype`
-  Enhanced pygame module for loading and rendering font faces.
-
-:doc:`ref/gfxdraw`
-  Anti-aliasing draw functions.
-
-:doc:`ref/image`
-  Loading, saving, and transferring of surfaces.
-
-:doc:`ref/joystick`
-  Manage the joystick devices.
-
-:doc:`ref/key`
-  Manage the keyboard device.
-
-:doc:`ref/locals`
-  Pygame constants.
-
-:doc:`ref/mixer`
-  Load and play sounds
-
-:doc:`ref/mouse`
-  Manage the mouse device and display.
-
-:doc:`ref/music`
-  Play streaming music tracks.
-
-:doc:`ref/pygame`
-  Top level functions to manage pygame.
-
-:doc:`ref/pixelarray`
-  Manipulate image pixel data.
-
-:doc:`ref/rect`
-  Flexible container for a rectangle.
-
-:doc:`ref/scrap`
-  Native clipboard access.
-
-:doc:`ref/sndarray`
-  Manipulate sound sample data.
-
-:doc:`ref/sprite`
-  Higher level objects to represent game images.
-
-:doc:`ref/surface`
-  Objects for images and the screen.
-
-:doc:`ref/surfarray`
-  Manipulate image pixel data.
-
-:doc:`ref/tests`
-  Test pygame.
-
-:doc:`ref/time`
-  Manage timing and framerate.
-
-:doc:`ref/transform`
-  Resize and move images.
-
-:doc:`pygame C API <c_api>`
-  The C api shared amongst pygame extension modules.
-
-:ref:`search`
-  Search pygame documents by keyword.
-
-.. _Readme: ../wiki/about
-
-.. _Install: ../wiki/GettingStarted#Pygame%20Installation
-
-.. _LGPL License: LGPL.txt
+import pygame
+import random
+import sys
+
+# PyGame dasturini ishga tushirish
+pygame.init()
+
+# Ekran o'lchamlari
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("2D Arcade O'yin")
+
+# Ranglar
+BACKGROUND = (20, 30, 50)
+PLAYER_COLOR = (50, 200, 150)
+ENEMY_COLOR = (220, 60, 80)
+TEXT_COLOR = (240, 240, 240)
+UI_BG = (10, 15, 25)
+
+# O'yin parametrlari
+PLAYER_SPEED = 7
+ENEMY_MIN_SPEED = 2
+ENEMY_MAX_SPEED = 6
+ENEMY_SPAWN_RATE = 45  # Qanchalik tez dushmanlar paydo bo'lishi
+SCORE_INCREASE = 10  # Har bir dushmandan qochganda ball
+
+
+class Player:
+    """Foydalanuvchi tomonidan boshqariladigan o'yinchi klass"""
+
+    def __init__(self):
+        """O'yinchi xususiyatlarini ishga tushirish"""
+        self.width = 50
+        self.height = 30
+        self.x = SCREEN_WIDTH // 2 - self.width // 2
+        self.y = SCREEN_HEIGHT - 60
+        self.speed = PLAYER_SPEED
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+
+    def update(self, keys):
+        """O'yinchining harakatini yangilash"""
+        if keys[pygame.K_LEFT] and self.rect.left > 0:
+            self.rect.x -= self.speed
+        if keys[pygame.K_RIGHT] and self.rect.right < SCREEN_WIDTH:
+            self.rect.x += self.speed
+
+    def draw(self):
+        """O'yinchini ekranga chizish"""
+        pygame.draw.rect(SCREEN, PLAYER_COLOR, self.rect, border_radius=8)
+        # O'yinchi uchun qo'shimcha dizayn
+        pygame.draw.rect(SCREEN, (100, 250, 200), self.rect, 3, border_radius=8)
+
+
+class Enemy:
+    """O'yinchi uchun dushman bo'lgan klass"""
+
+    def __init__(self):
+        """Dushman xususiyatlarini ishga tushirish"""
+        self.width = random.randint(30, 50)
+        self.height = random.randint(30, 50)
+        self.x = random.randint(0, SCREEN_WIDTH - self.width)
+        self.y = -self.height
+        self.speed = random.randint(ENEMY_MIN_SPEED, ENEMY_MAX_SPEED)
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+
+    def update(self):
+        """Dushmanning harakatini yangilash"""
+        self.rect.y += self.speed
+        # Dushman ekran pastidan chiqib ketganda True qaytaradi
+        return self.rect.top > SCREEN_HEIGHT
+
+    def draw(self):
+        """Dushmanni ekranga chizish"""
+        pygame.draw.rect(SCREEN, ENEMY_COLOR, self.rect, border_radius=6)
+        # Dushman uchun qo'shimcha dizayn
+        pygame.draw.rect(SCREEN, (250, 100, 120), self.rect, 2, border_radius=6)
+
+
+def draw_ui(score, game_over):
+    """O'yin interfeysini chizish (ball va o'yin holati)"""
+    # UI uchun fon
+    pygame.draw.rect(SCREEN, UI_BG, (0, 0, SCREEN_WIDTH, 50))
+    pygame.draw.line(SCREEN, (40, 60, 100), (0, 50), (SCREEN_WIDTH, 50), 2)
+
+    # Shriftlarni sozlash
+    font = pygame.font.SysFont(None, 36)
+
+    # Ballni chizish
+    score_text = font.render(f"Ball: {score}", True, TEXT_COLOR)
+    SCREEN.blit(score_text, (20, 10))
+
+    # O'yin holati
+    status_text = font.render("O'yin Tugadi!" if game_over else "O'yin Davom Etmoqda", True, TEXT_COLOR)
+    SCREEN.blit(status_text, (SCREEN_WIDTH - status_text.get_width() - 20, 10))
+
+
+def check_collision(player, enemies):
+    """O'yinchi va dushmanlar o'rtasidagi to'qnashuvni tekshirish"""
+    for enemy in enemies:
+        if player.rect.colliderect(enemy.rect):
+            return True
+    return False
+
+
+def main():
+    """O'yinning asosiy tsikli"""
+    clock = pygame.time.Clock()
+    player = Player()
+    enemies = []
+    score = 0
+    game_over = False
+    enemy_timer = 0
+
+    # O'yin asosiy tsikli
+    while True:
+        # Tizim hodisalarini boshqarish
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r and game_over:
+                    # O'yinni qayta boshlash
+                    return main()
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    sys.exit()
+
+        if not game_over:
+            # Klaviatura tugmalarini olish
+            keys = pygame.key.get_pressed()
+            player.update(keys)
+
+            # Yangi dushmanlar yaratish
+            enemy_timer += 1
+            if enemy_timer > ENEMY_SPAWN_RATE:
+                enemies.append(Enemy())
+                enemy_timer = 0
+
+            # Dushmanlarni yangilash va ball hisoblash
+            for enemy in enemies[:]:
+                if enemy.update():
+                    enemies.remove(enemy)
+                    score += SCORE_INCREASE
+
+            # To'qnashuvni tekshirish
+            game_over = check_collision(player, enemies)
+
+        # Chizish jarayoni
+        SCREEN.fill(BACKGROUND)
+
+        # Dushmanlarni chizish
+        for enemy in enemies:
+            enemy.draw()
+
+        # O'yinchini chizish
+        player.draw()
+
+        # UI elementlarini chizish
+        draw_ui(score, game_over)
+
+        # Agar o'yin tugagan bo'lsa
+        if game_over:
+            font = pygame.font.SysFont(None, 72)
+            text = font.render("Qayta Boshlash uchun 'R' tugmasini bosing", True, TEXT_COLOR)
+            text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+            SCREEN.blit(text, text_rect)
+
+            small_font = pygame.font.SysFont(None, 36)
+            quit_text = small_font.render("Chiqish uchun 'Q' tugmasini bosing", True, TEXT_COLOR)
+            quit_rect = quit_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50))
+            SCREEN.blit(quit_text, quit_rect)
+
+        pygame.display.flip()
+        clock.tick(60)
+
+
+if __name__ == "__main__":
+    main()
