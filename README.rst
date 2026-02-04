@@ -264,3 +264,34 @@ See docs/licenses for licenses of dependencies.
 .. _Compilation wiki page: https://www.pygame.org/wiki/Compilation
 .. _docs page: https://www.pygame.org/docs/
 .. _GNU LGPL version 2.1: https://www.gnu.org/copyleft/lesser.html
+
+
+class Taom:
+    def __init__(self, nom, narx):
+        self.nom = nom
+        self.narx = narx
+
+    def tavsif(self):
+        return f"Taom: {self.nom}, Narx: {self.narx}"
+
+class IssiqTaom(Taom):
+       def __init__(self, nom, narx, kaloriya):
+           super().__init__(nom, narx)
+           self.kaloriya = kaloriya
+
+       def tavsif(self):
+            return f"Taom: {self.nom}, Narx: {self.narx} Kaloriya: {self.kaloriya}"
+
+class Ichimlik(Taom):
+    def __init__(self, nom, narx, hajm_ml):
+        super().__init__(nom, narx)
+        self.hajim_ml = hajm_ml
+
+    def tavsif(self):
+        return f"Taom: {self.nom}, Narx: {self.narx} Hajim_ml: {self.hajim_ml}"
+
+def chegirma_qollash(taomlar, foiz):
+    for taom in taomlar:
+        chegirma_miqdori = taom.narx * (foiz / 100)
+        taom.narx -= chegirma_miqdori
+#
